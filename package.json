@@ -1,0 +1,28 @@
+{
+  "name": "cookbook-rest-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VikaMalitska/cookbook-rest-app.git"
+  },
+  "author": "Viktoriia Malitska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VikaMalitska/cookbook-rest-app/issues"
+  },
+  "homepage": "https://github.com/VikaMalitska/cookbook-rest-app#readme",
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.8.9",
+    "mongoose-sequence": "^5.2.2",
+    "nodemon": "^2.0.2",
+    "uuidv4": "^6.0.1"
+  }
+}
