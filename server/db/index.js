@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 
 const connectionURL = `mongodb://${config.db.host}/${config.db.name}`;
-mongoose.connect(connectionURL, { useNewUrlParser: true,  useUnifiedTopology: true})
+mongoose.connect(connectionURL, { useNewUrlParser: true,  useCreateIndex:true, useUnifiedTopology: true})
 .catch((e) => console.error(e));
 const db = mongoose.connection;
 
@@ -14,7 +14,6 @@ db.on('connected', () => {
 });
 
 db.on('error',(err) => console.error(err));
-
 
 db.on('disconnected', () => {
     console.log('mongoose connection dosconected')

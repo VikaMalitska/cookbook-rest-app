@@ -5,7 +5,7 @@ class RecipeController {
     async createOne(ctx) {
         try {
             const request = ctx.request.body;
-            if (!request.ingredients || request.ingredients.length === 0) {
+            if (!request.ingredients || request.ingredients.length === 0 || request.recipe === "") {
                 ctx.body = {
                     success: false,
                     message: "Empty recipe!"
@@ -18,6 +18,7 @@ class RecipeController {
             const newRecipe = await new Recipe({
                 name: request.name,
                 ingredients: request.ingredients,
+                recipe: request.recipe,
                 date: new Date()
             });
             const res = await newRecipe.save();
@@ -77,15 +78,15 @@ class RecipeController {
             };
             return;
         }
-
+        const res = await Recipe.find({ _id: req._id});
+        const currentRecipe = res[0];
         const archiveRecipe = new Archive({
-            name: req.previosVersion.name,
-            ingredients: req.previosVersion.ingredients,
-            recipe: req.previosVersion.recipe,
-            date: req.previosVersion.date,
-            keyId: req._id
+            name: currentRecipe.name,
+            ingredients: currentRecipe.ingredients,
+            recipe: currentRecipe.recipe,
+            date: currentRecipe.date,
+            keyId: currentRecipe._id
         });
-
         const resarchive = await archiveRecipe.save();
 
         const filter = { _id: req._id };
